@@ -1,8 +1,8 @@
-#include<iostream>
+п»ї#include<iostream>
 #include<conio.h>
 using namespace std;
 
-#define VERTICAL_LINE 179 //Символы
+#define VERTICAL_LINE 179 //РЎРёРјРІРѕР»С‹
 #define HORIZONTAL_LINE 196
 #define TOP_RIGHT 191
 #define TOP_LEFT 218
@@ -13,7 +13,7 @@ using namespace std;
 #define TARGET 42
 #define SPACE 32
 
-#define MOVE_LEFT 75  //Задание переменных для отлова с клавиатуры
+#define MOVE_LEFT 75  //Р—Р°РґР°РЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С… РґР»СЏ РѕС‚Р»РѕРІР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 #define MOVE_RIGHT 77
 #define MOVE_UP 72
 #define MOVE_DOWN 80
@@ -35,7 +35,7 @@ void main()
 	Fill_Grid(grid, SIZE, trg_i, trg_j);
 	Print_Grid(grid, SIZE);
 
-	do //цикл отлова событий
+	do //С†РёРєР» РѕС‚Р»РѕРІР° СЃРѕР±С‹С‚РёР№
 	{
 		control = _getch();
 		switch (control)
