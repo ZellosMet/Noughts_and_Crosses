@@ -24,9 +24,9 @@ const int SIZE = 3;
 
 void Fill_Grid(char grid[SIZE][SIZE], int SIZE, int trg_i, int trg_j); //Функция заполнения сетки
 void Print_Grid(char grid[SIZE][SIZE], int SIZE); //Функция вывода сетки
-void Check_Move_Сursor(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control); // Функция проверки движения курсора
+void Check_Move_Сursor(char grid[SIZE][SIZE], int SIZE, int *ptrg_i, int *ptrg_j, int control); // Функция проверки движения курсора
 int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int *ptrg_i, int *ptrg_j, char m_plr); //Функция установки символа игрока
-int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control);
+int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int *ptrg_i, int *ptrg_j, int control);
 int Check_Win(char grid[SIZE][SIZE], int SIZE); // Функция проверки на победу
 
 void main()
