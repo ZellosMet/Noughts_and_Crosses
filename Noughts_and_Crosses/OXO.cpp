@@ -10,7 +10,7 @@ using namespace std;
 #define LOWER_LEFT 192
 #define X 88
 #define O 79
-#define TARGET 42
+#define CURSOR 31
 #define EMPTY 32
 
 #define MOVE_LEFT 75  //Задание переменных для отлова с клавиатуры
@@ -24,14 +24,13 @@ const int SIZE = 3;
 
 void Fill_Grid(char grid[SIZE][SIZE], int SIZE, int trg_i, int trg_j); //Функция заполнения сетки
 void Print_Grid(char grid[SIZE][SIZE], int SIZE); //Функция вывода сетки
-void Check_Move_Target(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control); // Функция проверки движения курсора
+void Check_Move_Сursor(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control); // Функция проверки движения курсора
 int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int *ptrg_i, int *ptrg_j, char m_plr); //Функция установки символа игрока
 int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control);
 int Check_Win(char grid[SIZE][SIZE], int SIZE); // Функция проверки на победу
 
 void main()
 {
-
 	int control, trg_i = 0, trg_j = 0;
 	char move_player = X;
 	char grid[SIZE][SIZE];
@@ -45,7 +44,7 @@ void main()
 	Print_Grid(grid, SIZE);
 
 	setlocale(LC_ALL, "ru");
-	cout << "\nУправление: стрелочками выбирается позиция курсора(*), Enter устанавливает символ игрока, ESC - выход" << endl;
+	cout << "\nУправление: стрелочками выбирается позиция курсора(треугольник), Enter устанавливает символ игрока, ESC - выход" << endl;
 	setlocale(LC_ALL, "С");
 
 	do //Цикл отлова событий
@@ -53,10 +52,10 @@ void main()
 		control = _getch();
 		switch (control)
 		{
-		case MOVE_UP: Check_Move_Target(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
-		case MOVE_DOWN: Check_Move_Target(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
-		case MOVE_RIGHT: Check_Move_Target(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
-		case MOVE_LEFT: Check_Move_Target(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
+		case MOVE_UP: Check_Move_Сursor(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
+		case MOVE_DOWN: Check_Move_Сursor(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
+		case MOVE_RIGHT: Check_Move_Сursor(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
+		case MOVE_LEFT: Check_Move_Сursor(grid, SIZE, ptrg_i, ptrg_j, control); Fill_Grid(grid, SIZE, trg_i, trg_j); Print_Grid(grid, SIZE); break;
 		case ENTER: Set_Symbol(grid, SIZE, ptrg_i, ptrg_j, move_player); Print_Grid(grid, SIZE); Check_Win(grid, SIZE); move_player == X ? move_player = O : move_player = X; break;
 		}
 	} while (control != ESC);
@@ -68,7 +67,7 @@ void Print_Grid(char grid[SIZE][SIZE], int SIZE)
 	cout << "-------" << endl;
 	for (int i = 0; i < SIZE; i++)
 	{
-		cout << "|";
+		cout << "|"; 
 		for (int j = 0; j < SIZE; j++)
 		{
 			cout << grid[i][j] << "|";
@@ -85,7 +84,7 @@ void Fill_Grid(char grid[SIZE][SIZE], int SIZE, int trg_i, int trg_j)
 		{
 			if (i == trg_i && j == trg_j)
 			{
-				grid[i][j] = TARGET;
+				grid[i][j] = CURSOR;
 			}
 			else if(grid[i][j] != X && grid[i][j] != O)
 			{
@@ -95,7 +94,7 @@ void Fill_Grid(char grid[SIZE][SIZE], int SIZE, int trg_i, int trg_j)
 	}
 }
 
-void Check_Move_Target(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control)
+void Check_Move_Сursor(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int control)
 {
 	if (control == MOVE_UP)
 	{
@@ -137,7 +136,7 @@ int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, char m
 		{
 			if (grid[i][j] == EMPTY)
 			{
-				grid[i][j] = TARGET;
+				grid[i][j] = CURSOR;
 				*ptrg_i = i;
 				*ptrg_j = j;
 				return 0;
@@ -154,7 +153,7 @@ int Set_Symbol(char grid[SIZE][SIZE], int SIZE, int* ptrg_i, int* ptrg_j, int co
 		{
 			if (grid[i][j] == EMPTY)
 			{
-				grid[i][j] = TARGET;
+				grid[i][j] = CURSOR;
 				*ptrg_i = i;
 				*ptrg_j = j;
 				return 0;
